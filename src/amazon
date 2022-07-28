@@ -1,0 +1,81 @@
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| amazon               |
+| information_schema   |
+| learn                |
+| mysql                |
+| payroll_service      |
+| performance_schema   |
+| sys                  |
+| world                |
++----------------------+
+9 rows in set (0.00 sec)
+
+mysql> use amazon;
+Database changed
+
+mysql> show tables;
++------------------+
+| Tables_in_amazon |
++------------------+
+| employee_details |
++------------------+
+1 row in set (1.37 sec)
+
+mysql> describe employee_details;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int          | NO   | PRI | NULL    |       |
+| firstname     | varchar(50)  | NO   |     | NULL    |       |
+| lastname      | varchar(50)  | NO   |     | NULL    |       |
+| email         | varchar(100) | YES  |     | NULL    |       |
+| mobile_number | varchar(20)  | YES  |     | NULL    |       |
+| gender        | char(1)      | NO   |     | NULL    |       |
+| address       | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee_details;
++----+-----------+----------+-------------------+---------------+--------+------------+
+| id | firstname | lastname | email             | mobile_number | gender | address    |
++----+-----------+----------+-------------------+---------------+--------+------------+
+|  1 | Swapnil   | Patil    | swapnil@gmail.com | 9967891679    | M      | Panvel     |
+|  2 | Sheetal   | Patil    | sheetal@gmail.com | 9911111179    | F      | New Panvel |
++----+-----------+----------+-------------------+---------------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create table products(product_id int primary key,
+    -> product_price int,
+    -> product_qty int,
+    -> product_descr varchar(200));
+Query OK, 0 rows affected (1.38 sec)
+
+mysql> describe products;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| product_id    | int          | NO   | PRI | NULL    |       |
+| product_price | int          | YES  |     | NULL    |       |
+| product_qty   | int          | YES  |     | NULL    |       |
+| product_descr | varchar(200) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into products(product_id,product_descr,product_price,product_qty) values
+    -> (1,'Freeze',27999,1),
+    -> (2,'Mobile',30000,1);
+Query OK, 2 rows affected (0.16 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from products;
++------------+---------------+-------------+---------------+
+| product_id | product_price | product_qty | product_descr |
++------------+---------------+-------------+---------------+
+|          1 |         27999 |           1 | Freeze        |
+|          2 |         30000 |           1 | Mobile        |
++------------+---------------+-------------+---------------+
+2 rows in set (0.00 sec)
